@@ -13,14 +13,15 @@ class durationAdmin(admin.ModelAdmin):
 
 @admin.register(title)
 class titleAdmin(admin. ModelAdmin):
-    list_display = ("SongName", "Artist", "Duration","created_at","updated_at")
-    search_fields = ("SongName", "Artist", "Duration")
+    list_display = ("SongNameID", "Artist", "Duration","created_at","updated_at")
+    search_fields = ("SongNameID", "Artist", "Duration")
 
 @admin.register(albums)
 class albumsAdmin(admin. ModelAdmin):
     list_display = ("titleID", "durationID","created_at","updated_at")
     search_fields = ("titleID__FirstName", "titleID__LastName", "durationID__durationName")
-
+    
+@admin.register(date_added)
 class date_addedAdmin(admin.ModelAdmin):
     list_display = ('Song_Added', 'durationID')
     search_fields = ("Song_Added", "durationID__durationName")

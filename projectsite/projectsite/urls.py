@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+
+
 from record.views import (
     HomePageView, artistListView, artistCreateView, artistDeleteView, artistUpdateView,
     durationListView, durationCreateView, durationDeleteView, durationUpdateView,
@@ -24,7 +26,7 @@ urlpatterns = [
     path('durations/<int:pk>/delete/', durationDeleteView.as_view(), name='duration-delete'),
     path('titles/', titleListView.as_view(), name='title-list'),
     path('titles/add/', titleCreateView.as_view(), name='title-add'),
-    path('titles/<int:pk>/', titleUpdateView.as_view(), name='title-update'),
+    path('titles/<int:pk>/update/', titleUpdateView.as_view(), name='title-update'),
     path('titles/<int:pk>/delete/', titleDeleteView.as_view(), name='title-delete'),
     path('albums/', albumsListView.as_view(), name='albums-list'),
     path('albums/add/', albumsCreateView.as_view(), name='albums-add'),
@@ -34,7 +36,7 @@ urlpatterns = [
     path('date_addeds/add/', date_addedCreateView.as_view(), name='date_added-add'),
     path('date_addeds/<int:pk>/', date_addedUpdateView.as_view(), name='date_added-update'),
     path('date_addeds/<int:pk>/delete/', date_addedDeleteView.as_view(), name='date_added-delete'),
-    path('albums/update/', albumsUpdateView.as_view(), name='albums-update'),  # Use the imported view directly
+   path('albums/update/<int:pk>/', albumsUpdateView.as_view(), name='albums-update')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

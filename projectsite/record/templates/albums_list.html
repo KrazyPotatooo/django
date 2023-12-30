@@ -13,11 +13,11 @@
         </tr>
         {% for album in object_list %}  <!-- Fix the variable name to 'album' -->
         <tr>
-          <td>{{ album.StudentID.FirstName }} {{ album.StudentID.LastName }}</td>
-          <td>{{ album.CourseID.CourseName }}</td>
+          <td>{{ album.titleID }}</td>
+          <td>{{ album.durationID }}</td>
           <td>
-            <a href="{% url 'albums-update' pk=album.id %}">Edit</a> |  <!-- Use 'album.id' -->
-            <a href="{% url 'albums-delete' pk=album.id %}">Delete</a>
+            <a href="{% url 'albums-update' album.pk %}">Edit</a> |
+            <a href="{% url 'albums-delete' album.pk %}">Delete</a>  <!-- Use 'album.pk' -->
           </td>
         </tr>
         {% empty %}

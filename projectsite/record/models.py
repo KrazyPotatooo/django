@@ -26,12 +26,12 @@ class duration(BaseModel):
         return self.durationName
 
 class title(BaseModel):
-    SongName = models.AutoField(primary_key=True)
+    SongNameID = models.AutoField(primary_key=True)
     Artist = models.CharField(max_length=255)
     Duration = models.CharField(max_length=255)
   
     def __str__(self):
-        return f"{self.FirstName} {self.LastName}"
+        return f"{self.SongNameID} {self.Artist}"
 
 class albums(BaseModel):
     titleID = models.ForeignKey(title, on_delete=models.CASCADE)
