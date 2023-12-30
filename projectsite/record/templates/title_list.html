@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'title-add' %}" class="custom-btn btn btn-primary">Eter New Title</a><br>
+<section class="trainers-container">
+    <table class="styled-table">
+      <tbody>
+        <tr>
+          <th>Song Name</th>
+          <th>Artist</th>
+          <th>Duration</th>
+          <th>Action</th>
+        </tr>
+        {% for title in object_list %}
+        <tr>
+          <td>{{ title.FirstName }}</td>
+          <td>{{ title.LastName }}</td>
+          <td>{{ title.Email }}</td>
+          <td>
+            <a href="{% url 'title-update' title.titleID %}">Edit</a> |
+            <a href="{% url 'title-delete' title.titleID %}">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+                <tr>
+                <td colspan="4" style="text-align: center;">
+                    <p>No Records Found</p>
+                </td>
+                </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</section>
+<div>
+    {% include 'includes/pagination.html' %}
+</div> 
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'date_added-add' %}" class="custom-btn btn btn-primary">Enter New Date</a><br>
+<section class="trainers-container">
+    <table class="styled-table">
+      <tbody>
+        <tr>
+          <th>Artist</th>
+          <th>Albums</th>
+          <th>Action</th>
+        </tr>
+        {% for date_added in object_list %}
+        <tr>
+          <td>{{ date_added.date_addedName }}</td>
+          <td>{{ date_added.Deadline }}</td>
+          <td>{{ date_added.CourseID.CourseName }}</td>
+          <td>
+            <a href="{% url 'date_added-update' date_added.date_addedID %}">Edit</a> |
+            <a href="{% url 'date_added-delete' date_added.date_addedID %}">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+                <tr>
+                <td colspan="4" style="text-align: center;">
+                    <p>No Records Found</p>
+                </td>
+                </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</section>
+<div>
+    {% include 'includes/pagination.html' %}
+</div> 
+{% endblock %}

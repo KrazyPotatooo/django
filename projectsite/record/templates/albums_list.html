@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'albums-add' %}" class="custom-btn btn btn-primary">Enter New Albums</a><br>
+<section class="trainers-container">
+    <table class="styled-table">
+      <tbody>
+        <tr>
+          <th>Artist Name</th>
+          <th>Song</th>
+          <th>Action</th>
+        </tr>
+        {% for album in object_list %}  <!-- Fix the variable name to 'album' -->
+        <tr>
+          <td>{{ album.StudentID.FirstName }} {{ album.StudentID.LastName }}</td>
+          <td>{{ album.CourseID.CourseName }}</td>
+          <td>
+            <a href="{% url 'albums-update' pk=album.id %}">Edit</a> |  <!-- Use 'album.id' -->
+            <a href="{% url 'albums-delete' pk=album.id %}">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+                <tr>
+                <td colspan="3" style="text-align: center;">
+                    <p>No Records Found</p>
+                </td>
+                </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</section>
+<div>
+    {% include 'includes/pagination.html' %}
+</div> 
+{% endblock %}

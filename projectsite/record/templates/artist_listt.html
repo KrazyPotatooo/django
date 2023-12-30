@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'artist-add' %}" class="custom-btn btn btn-primary">Enter New Artist</a><br>
+<section class="trainers-container">
+    <table class="styled-table">
+      <tbody>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Department</th>
+          <th>Action</th>
+        </tr>
+        {% for artist in object_list %}
+        <tr>
+          <td>{{ artist.FirstName }} {{ artist.LastName }}</td>
+          <td>{{ artist.Email }}</td>
+          <td>
+            <a href="{% url 'artist-update' artist.artistID %}" >Edit</a> |
+              <a href="{% url 'artist-delete' artist.artistID %}" >Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+                <tr>
+                <td colspan="4" style="text-align: center;">
+                    <p>No Records Found</p>
+                </td>
+                </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</section>
+<div>
+    {% include 'includes/pagination.html' %}
+</div> 
+{% endblock %}
