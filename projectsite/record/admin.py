@@ -13,8 +13,8 @@ class durationAdmin(admin.ModelAdmin):
 
 @admin.register(title)
 class titleAdmin(admin. ModelAdmin):
-    list_display = ("FirstName", "LastName", "Email","created_at","updated_at")
-    search_fields = ("FirstName", "LastName", "Email")
+    list_display = ("SongName", "Artist", "Duration","created_at","updated_at")
+    search_fields = ("SongName", "Artist", "Duration")
 
 @admin.register(albums)
 class albumsAdmin(admin. ModelAdmin):

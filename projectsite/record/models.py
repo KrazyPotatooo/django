@@ -26,10 +26,9 @@ class duration(BaseModel):
         return self.durationName
 
 class title(BaseModel):
-    titleID = models.AutoField(primary_key=True)
-    FirstName = models.CharField(max_length=255)
-    LastName = models.CharField(max_length=255)
-    Email = models.EmailField()
+    SongName = models.AutoField(primary_key=True)
+    Artist = models.CharField(max_length=255)
+    Duration = models.CharField(max_length=255)
   
     def __str__(self):
         return f"{self.FirstName} {self.LastName}"
@@ -40,12 +39,12 @@ class albums(BaseModel):
 
 class date_added(BaseModel):
     date_addedID = models.AutoField(primary_key=True)
-    Song_Added = models.CharField(max_length=255, default="YourDefaultValueHere")  # Replace "YourDefaultValueHere" with an appropriate default value
+    Song_Added = models.CharField(max_length=255, default="YourDefaultValueHere")
     durationID = models.ForeignKey(duration, on_delete=models.CASCADE)
-    date_addedName = models.CharField(max_length=255)  # Add the missing field
+    date_addedName = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.date_addedName  # Ensure the __str__ method references a valid field
+        return self.date_addedName
 
 
 
