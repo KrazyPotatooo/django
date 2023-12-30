@@ -5,32 +5,35 @@
 <a href="{% url 'albums-add' %}" class="custom-btn btn btn-primary">Enter New Albums</a><br>
 <section class="trainers-container">
     <table class="styled-table">
-      <tbody>
-        <tr>
-          <th>Artist Name</th>
-          <th>Song</th>
-          <th>Action</th>
-        </tr>
-        {% for album in object_list %}  <!-- Fix the variable name to 'album' -->
-        <tr>
-          <td>{{ album.titleID }}</td>
-          <td>{{ album.durationID }}</td>
-          <td>
-            <a href="{% url 'albums-update' album.pk %}">Edit</a> |
-            <a href="{% url 'albums-delete' album.pk %}">Delete</a>  <!-- Use 'album.pk' -->
-          </td>
-        </tr>
-        {% empty %}
-                <tr>
+        <thead>
+            <tr>
+                <th>Artist Name</th>
+                <th>Song</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in object_list %}
+            <tr>
+                <td>{{ album.titleID }}</td>
+                <td>{{ album.artistName }}</td>
+                <td>{{ album.durationID }}</td>
+                <td>
+                    <a href="{% url 'albums-update' album.pk %}">Edit</a> |
+                    <a href="{% url 'albums-delete' album.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
                 <td colspan="3" style="text-align: center;">
                     <p>No Records Found</p>
                 </td>
-                </tr>
-        {% endfor %}
-      </tbody>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </section>
 <div>
     {% include 'includes/pagination.html' %}
-</div> 
+</div>
 {% endblock %}

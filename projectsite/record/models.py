@@ -3,7 +3,6 @@ from django.db import models
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True)
-
     class Meta:
         abstract = True
 
@@ -26,25 +25,25 @@ class duration(BaseModel):
         return self.durationName
 
 class title(BaseModel):
-    SongNameID = models.AutoField(primary_key=True)
+    titleID = models.AutoField(primary_key=True)
+    SongName = models.CharField(max_length=255)
     Artist = models.CharField(max_length=255)
-    Duration = models.CharField(max_length=255)
   
     def __str__(self):
-        return f"{self.SongNameID} {self.Artist}"
+        return f"{self.SongName} {self.Artist}"
+
 
 class albums(BaseModel):
     titleID = models.ForeignKey(title, on_delete=models.CASCADE)
     durationID = models.ForeignKey(duration, on_delete=models.CASCADE)
 
 class date_added(BaseModel):
-    date_addedID = models.AutoField(primary_key=True)
-    Song_Added = models.CharField(max_length=255, default="YourDefaultValueHere")
+    title_id = models.AutoField(primary_key=True)
+    Song_Added = models.CharField(max_length=255, default="YourDefaultValueHere")  
     durationID = models.ForeignKey(duration, on_delete=models.CASCADE)
-    date_addedName = models.CharField(max_length=255)
+    date_addedName = models.CharField(max_length=255, default="YourDefaultValueHere")  # Add a default value
 
     def __str__(self):
         return self.date_addedName
-
 
 
