@@ -5,35 +5,33 @@
 <a href="{% url 'albums-add' %}" class="custom-btn btn btn-primary">Enter New Albums</a><br>
 <section class="trainers-container">
     <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Artist Name</th>
-                <th>Song</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for album in object_list %}
-            <tr>
-                <td>{{ album.titleID }}</td>
-                <td>{{ album.artistName }}</td>
-                <td>{{ album.durationID }}</td>
-                <td>
-                    <a href="{% url 'albums-update' album.pk %}">Edit</a> |
-                    <a href="{% url 'albums-delete' album.pk %}">Delete</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="3" style="text-align: center;">
-                    <p>No Records Found</p>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+      <tbody>
+        <tr>
+          <th>Artist Name</th>
+          <th>Song</th>
+          <th>Action</th>
+        </tr>
+        {% for albums in object_list %}  <!-- Change the variable name to 'album' -->
+        <tr>
+          <td>{{ albums.artist }} </td>
+            {{ albums.song}}</td>  <!-- Use 'album.artist' and 'album.song' -->
+          <td>{{ albums.song}}</td>  <!-- Adjust as per your model structure -->
+          <td>
+            <a href="{% url 'albums-update' pk=albums.pk %}">Edit</a> |  <!-- Use 'album.pk' -->
+            <a href="{% url 'albums-delete' pk=albums.pk %}">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="3" style="text-align: center;">
+            <p>No Records Found</p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
 </section>
 <div>
     {% include 'includes/pagination.html' %}
-</div>
+</div> 
 {% endblock %}

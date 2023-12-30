@@ -13,9 +13,8 @@
         </tr>
         {% for duration in object_list %}
         <tr>
-          <td>{{ duration.durationName }}</td>
-          <td>{{ duration.durationID}}</td>
-
+          <td>{{ duration.artistID }}</td>
+          <td>{{ duration.durationName}}</td>
           <td>
             <a href="{% url 'duration-update' duration.durationID %}">Edit</a> |
             <a href="{% url 'duration-delete' duration.durationID %}">Delete</a>

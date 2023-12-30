@@ -9,12 +9,14 @@
         <tr>
           <th>Artist</th>
           <th>Albums</th>
+          <th>Date Added</th>
           <th>Action</th>
         </tr>
         {% for date_added in object_list %}
         <tr>
-          <td>{{ date_added.artist.artistID}}</td>
-          <td>{{ date_added.albums.SongNameId}}</td>
+          <td>{{ date_added.durationID }}</td>
+          <td>{{ date_added.date_addedName }}</td>
+          <td>{{ date_added.Deadline}}</td>
           <td>
             <a href="{% url 'date_added-update' date_added.date_addedID %}">Edit</a> |
             <a href="{% url 'date_added-delete' date_added.date_addedID %}">Delete</a>

@@ -1,40 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
+{% for title in titles %}
+    {{ title.artist }}  <!-- Make sure this references the correct attribute -->
+{% endfor %}
 
 {% block content %}
-<a href="{% url 'title-add' %}" class="custom-btn btn btn-primary">Enter New Title</a><br>
+<a href="{% url 'title-add' %}" class="custom-btn btn btn-primary">Eter New Title</a><br>
 <section class="trainers-container">
     <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Songs</th>
-                <th>Artist</th>
-                <th>Duration</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for title in object_list %}
-            <tr>
-                <td>{{ title.SongName }}</td>
-                <td>{{ title.Artist }}</td>
-                <td>{{ title.Duration }}</td>
-                <td>
-                    <a href="{% url 'title-update' title.pk %}">Edit</a> |
-                    <a href="{% url 'title-delete' title.pk %}">Delete</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
+      <tbody>
+        <tr>
+          <th>Song Number</th>
+          <th>Artist</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+        {% for title in object_list %}
+        <tr>
+          <td>{{ title.titleID }}</td>
+          <td>{{ title.FirstName }}{{ title.LastName }}</td>
+          <td>{{ title.Email }}</td>
+          <td>
+            <a href="{% url 'title-update' title.titleID %}">Edit</a> |
+            <a href="{% url 'title-delete' title.titleID %}">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+                <tr>
                 <td colspan="4" style="text-align: center;">
                     <p>No Records Found</p>
                 </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+                </tr>
+        {% endfor %}
+      </tbody>
     </table>
 </section>
 <div>
     {% include 'includes/pagination.html' %}
-</div>
+</div> 
 {% endblock %}
